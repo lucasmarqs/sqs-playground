@@ -1,0 +1,12 @@
+---
+version: '3.7'
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - '8080:8080'
+      - '4567-4584:4567-4584'
+    environment:
+      SERVICES: sqs
+    volumes:
+      - /var/sqs-playground/localstack:/tmp/localstack
