@@ -1,4 +1,9 @@
 package conf
 
-// SQSEndpoint ...
-const SQSEndpoint = "http://localhost:4576"
+const (
+	// SQSEndpoint ...
+	SQSEndpoint = "http://localhost:4576"
+
+	// PlaygroundQueueURL ...
+	PlaygroundQueueURL = SQSEndpoint + "/queue/playground"
+)

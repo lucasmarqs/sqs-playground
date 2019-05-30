@@ -19,15 +19,14 @@ func main() {
 	}))
 	svc := sqs.New(sess)
 
-	input := sqs.ListQueuesInput{QueueNamePrefix: aws.String("")}
-
-	output, err := svc.ListQueues(&input)
+	receiveMessageInput := sqs.ReceiveMessageInput{QueueUrl: aws.String(conf.PlaygroundQueueURL)}
+	receiveMessageInput.SetMaxNumberOfMessages(10)
+	received, err := svc.ReceiveMessage(&receiveMessageInput)
 	if err != nil {
-		fmt.Println("Failed to list queues", err)
+		panic(err)
 	}
 
-	fmt.Println("Available Queues:")
-	for _, name := range output.QueueUrls {
-		fmt.Println(*name)
+	for _, msg := range received.Messages {
+		fmt.Println("[received]", *msg)
 	}
 }
