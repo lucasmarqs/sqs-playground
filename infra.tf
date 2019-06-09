@@ -15,6 +15,7 @@ provider "aws" {
 resource "aws_sqs_queue" "playground" {
   name = "playground"
 
-  receive_wait_time_seconds = 20
-  message_retention_seconds = 3600
+  message_retention_seconds  = 3600
+  receive_wait_time_seconds  = 20
+  visibility_timeout_seconds = 42
 }
